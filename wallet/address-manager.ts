@@ -1,24 +1,24 @@
 // @ts-ignore
-import * as anuma-core from '@anuma-network/core-lib';
+import * as anumacore from '@anuma-network/core-lib';
 import {Network} from 'custom-types';
 
 // @ts-ignore
-const secp256k1 = anuma-core.secp256k1;//require('secp256k1-wasm');
+const secp256k1 = anumacore.secp256k1;//require('secp256k1-wasm');
 import {EventTargetImpl} from './event-target-impl';
 import {dpc} from '../utils/helper';
 
 export class AddressManager extends EventTargetImpl {
-	constructor(HDWallet: anuma-core.HDPrivateKey, network: Network) {
+	constructor(HDWallet: anumacore.HDPrivateKey, network: Network) {
 		super();
 		this.HDWallet = HDWallet;
 		this.network = network;
 	}
 
-	private HDWallet: anuma-core.HDPrivateKey;
+	private HDWallet: anumacore.HDPrivateKey;
 
 	network: Network;
 
-	get all(): Record < string, anuma-core.PrivateKey > {
+	get all(): Record < string, anumacore.PrivateKey > {
 		return {
 			...this.receiveAddress.keypairs,
 			...this.changeAddress.keypairs
@@ -44,9 +44,9 @@ export class AddressManager extends EventTargetImpl {
 		counter: number;
 		current: {
 			address: string;
-			privateKey: anuma-core.PrivateKey
+			privateKey: anumacore.PrivateKey
 		};
-		keypairs: Record < string, anuma-core.PrivateKey > ;
+		keypairs: Record < string, anumacore.PrivateKey > ;
 		atIndex: Record < string, string > ;
 		next: () => string;
 		advance: (n: number) => void;
@@ -85,9 +85,9 @@ export class AddressManager extends EventTargetImpl {
 		counter: number;
 		current: {
 			address: string;
-			privateKey: anuma-core.PrivateKey
+			privateKey: anumacore.PrivateKey
 		};
-		keypairs: Record < string, anuma-core.PrivateKey > ;
+		keypairs: Record < string, anumacore.PrivateKey > ;
 		atIndex: Record < string, string > ;
 		next: () => string;
 		advance: (n: number) => void;
@@ -129,7 +129,7 @@ export class AddressManager extends EventTargetImpl {
 		index: number
 	): {
 		address: string;
-		privateKey: anuma-core.PrivateKey
+		privateKey: anumacore.PrivateKey
 	} {
 		//let ts0 = Date.now();
 		const dType = deriveType === 'receive' ? 0 : 1;
@@ -140,14 +140,14 @@ export class AddressManager extends EventTargetImpl {
 		//let ts2 = Date.now();
 
 		//console.log('durations:',(ts2-ts1)/1000,(ts1-ts0)/1000);
-		//let address1 = new anuma-core.PublicKey(publicKeys.pubkey, {network:this.network}).toAddress().toString();
+		//let address1 = new anumacore.PublicKey(publicKeys.pubkey, {network:this.network}).toAddress().toString();
 		//let address = privateKey.toAddress(this.network).toString();
 		//let pubkey = Buffer.from(publicKeys.pubkey, "hex");
 		//let {address:address3} = bitcoin.payments.p2pkh({pubkey});
 		let xonly = Buffer.from(xonlyPubKey, "hex");
 		//@ts-ignore
 		
-		let address = anuma-core.Address.fromPublicKeyBuffer(xonly, this.network).toString();
+		let address = anumacore.Address.fromPublicKeyBuffer(xonly, this.network).toString();
 
 		/*
 		console.log("privateKey:xxxx:", {
