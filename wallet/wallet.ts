@@ -1,5 +1,5 @@
 const Mnemonic = require('bitcore-mnemonic');
-import * as anuma-core from '@anuma-network/core-lib';
+import * as anumacore from '@anuma-network/core-lib';
 import * as helper from '../utils/helper';
 import {Storage, StorageType} from './storage';
 export * from './storage';
@@ -34,7 +34,7 @@ const SompiPerAnuma = 100_000_000
 // MaxSompi is the maximum transaction amount allowed in sompi.
 const MaxSompi = 21_000_000 * SompiPerAnuma
 
-export {anuma-core, COMPOUND_UTXO_MAX_COUNT, CONFIRMATION_COUNT, COINBASE_CFM_COUNT};
+export {anumacore, COMPOUND_UTXO_MAX_COUNT, CONFIRMATION_COUNT, COINBASE_CFM_COUNT};
 
 /** Class representing an HDWallet with derivable child addresses */
 class Wallet extends EventTargetImpl {
@@ -42,12 +42,12 @@ class Wallet extends EventTargetImpl {
 	static Mnemonic: typeof Mnemonic = Mnemonic;
 	static passwordHandler = Crypto;
 	static Crypto = Crypto;
-	static anuma-core=anuma-core;
+	static anumacore=anumacore;
 	static COMPOUND_UTXO_MAX_COUNT=COMPOUND_UTXO_MAX_COUNT;
 	static MaxMassAcceptedByBlock = 100000;
 	static MaxMassUTXOs = 100000;
 	//Wallet.MaxMassAcceptedByBlock -
-	//anuma-core.Transaction.EstimatedStandaloneMassWithoutInputs;
+	//anumacore.Transaction.EstimatedStandaloneMassWithoutInputs;
 
 	// TODO - integrate with Anumacore-lib
 	static networkTypes: Object = {
@@ -71,7 +71,7 @@ class Wallet extends EventTargetImpl {
 
 
 	static initRuntime() {
-		return anuma-core.initRuntime();
+		return anumacore.initRuntime();
 	}
 
 	/**
@@ -100,7 +100,7 @@ class Wallet extends EventTargetImpl {
 		return myWallet;
 	}
 
-	HDWallet: anuma-core.HDPrivateKey;
+	HDWallet: anumacore.HDPrivateKey;
 	disableBalanceNotifications: boolean = false;
 	get balance(): {available: number, pending:number, total:number} {
 		return {
@@ -228,12 +228,12 @@ class Wallet extends EventTargetImpl {
 
 
 		if (privKey && seedPhrase) {
-			this.HDWallet = new anuma-core.HDPrivateKey(privKey);
+			this.HDWallet = new anumacore.HDPrivateKey(privKey);
 			this.mnemonic = seedPhrase;
 		} else {
 			const temp = new Mnemonic(Mnemonic.Words.ENGLISH);
 			this.mnemonic = temp.toString();
-			this.HDWallet = new anuma-core.HDPrivateKey(temp.toHDPrivateKey().toString());
+			this.HDWallet = new anumacore.HDPrivateKey(temp.toHDPrivateKey().toString());
 		}
 
 		this.uid = this.createUID();
@@ -803,14 +803,14 @@ class Wallet extends EventTargetImpl {
 
 		const changeAddr = changeAddrOverride || this.addressManager.changeAddress.next();
 		try {
-			const tx: anuma-core.Transaction = new anuma-core.Transaction()
+			const tx: anumacore.Transaction = new anumacore.Transaction()
 				.from(utxos)
 				.to(toAddr, amount)
 				.setVersion(0)
 				.fee(fee)
 				.change(changeAddr)
 			if(!skipSign)
-				tx.sign(privKeys, anuma-core.crypto.Signature.SIGHASH_ALL, 'schnorr');
+				tx.sign(privKeys, anumacore.crypto.Signature.SIGHASH_ALL, 'schnorr');
 
 			//window.txxxx = tx;
 			return {
@@ -851,7 +851,7 @@ class Wallet extends EventTargetImpl {
 
 	/*
 	validateAddress(addr:string):boolean{
-		let address = new anuma-core.Address(addr);
+		let address = new anumacore.Address(addr);
 		return address.type == "pubkey";
 	}
 	*/
@@ -975,7 +975,7 @@ class Wallet extends EventTargetImpl {
 		} = data;
 
 		const ts_0 = Date.now();
-		tx.sign(privKeys, anuma-core.crypto.Signature.SIGHASH_ALL, 'schnorr');
+		tx.sign(privKeys, anumacore.crypto.Signature.SIGHASH_ALL, 'schnorr');
 		const {mass:txMass} = tx.getMassAndSize();
 		this.logger.info("txMass", txMass)
 		if(txMass > Wallet.MaxMassAcceptedByBlock){
@@ -1007,7 +1007,7 @@ class Wallet extends EventTargetImpl {
 			this.logger.debug("composeTx:tx", "txSize:", txSize)
 
 		const ts_3 = Date.now();
-		const inputs: RPC.TransactionInput[] = tx.inputs.map((input: anuma-core.Transaction.Input) => {
+		const inputs: RPC.TransactionInput[] = tx.inputs.map((input: anumacore.Transaction.Input) => {
 			if (debug || this.loggerLevel > 0) {
 				this.logger.debug("input.script.inspect", input.script.inspect())
 			}
@@ -1023,7 +1023,7 @@ class Wallet extends EventTargetImpl {
 			};
 		})
 		const ts_4 = Date.now();
-		const outputs: RPC.TransactionOutput[] = tx.outputs.map((output: anuma-core.Transaction.Output) => {
+		const outputs: RPC.TransactionOutput[] = tx.outputs.map((output: anumacore.Transaction.Output) => {
 			return {
 				amount: output.satoshis,
 				scriptPublicKey: {
@@ -1038,7 +1038,7 @@ class Wallet extends EventTargetImpl {
 		//const payload = Buffer.from(payloadStr).toString("base64");
 		//console.log("payload-hex:", Buffer.from(payloadStr).toString("hex"))
 		//@ ts-ignore
-		//const payloadHash = anuma-core.crypto.Hash.sha256sha256(Buffer.from(payloadStr));
+		//const payloadHash = anumacore.crypto.Hash.sha256sha256(Buffer.from(payloadStr));
 		const rpcTX: RPC.SubmitTransactionRequest = {
 			transaction: {
 				version,
@@ -1329,7 +1329,7 @@ class Wallet extends EventTargetImpl {
 	setLogLevel(level: string) {
 		this.logger.setLevel(level);
 		this.loggerLevel = level!='none'?2:0;
-		anuma-core.setDebugLevel(level?1:0);
+		anumacore.setDebugLevel(level?1:0);
 	}
 }
 
