@@ -1,4 +1,4 @@
-import anuma-core from '@anuma-network/core-lib';
+import anumacore from '@anuma-network/core-lib';
 import { AnumaAPI } from 'wallet/apiHelpers';
 
 export type Network = 'anuma' | 'anumadev' | 'anumareg' | 'anumatest' | 'anumasim';
@@ -81,7 +81,7 @@ export interface TxSend {
   toAddr: string;
   amount: number;
   fee: number;
-  //tx?: anuma-core.Transaction;
+  //tx?: anumacore.Transaction;
   changeAddrOverride? : string;
   networkFeeMax?:number;
   note?:string;
@@ -107,7 +107,7 @@ export interface TxResp {
 }
 
 export interface ComposeTxInfo{
-  tx: anuma-core.Transaction;
+  tx: anumacore.Transaction;
   id: string;
   rawTx: string;
   utxoIds: string[];
