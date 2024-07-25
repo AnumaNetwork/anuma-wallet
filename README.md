@@ -15,7 +15,7 @@ Anuma Wallet uses the following modules:
   * [anuma-grpc](https://github.com/AnumaNetwork/anuma-grpc) - provides gRPC bindings for `anumad`
   * [anuma-grpc-node](https://github.com/AnumaNetwork/anuma-grpc-node) - gRPC transport for server-side (NodeJs)
   * [anuma-grpc-web](https://github.com/AnumaNetwork/anuma-grpc-web) - gRPC transport for client-side (browsers)
-  * [anuma-core-lib](https://github.com/AnumaNetwork/anuma-core-lib) - Anuma UTXO and transaction data structures
+  * [anumacore-lib](https://github.com/AnumaNetwork/anumacore-lib) - Anuma UTXO and transaction data structures
 
 Applications built on top of Anuma Wallet Framework:
 
