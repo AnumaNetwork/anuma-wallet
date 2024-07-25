@@ -1,0 +1,8 @@
+{
+  "DEFAULT_FEE": 1000,
+  "DEFAULT_NETWORK": {
+    "prefix": "anumadev",
+    "description": "Devnet",
+    "apiBaseUrl": "https://testnet-068rc1-beta-anumarovd.kas.pa"
+  }
+}
