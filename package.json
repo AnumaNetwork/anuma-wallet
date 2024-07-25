@@ -32,5 +32,18 @@
     "index.ts",
     "README.md",
     "tsconfig.json"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnumaNetwork/anuma-wallet.git"
+  },
+  "keywords": [
+    "anuma",
+    "wallet",
+    "network"
+  ],
+  "bugs": {
+    "url": "https://github.com/AnumaNetwork/anuma-wallet/issues"
+  },
+  "homepage": "https://github.com/AnumaNetwork/anuma-wallet#readme"
 }
