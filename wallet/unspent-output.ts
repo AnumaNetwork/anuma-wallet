@@ -1,6 +1,6 @@
-import * as anuma-core from '@anuma-network/core-lib';
+import * as anumacore from '@anuma-network/core-lib';
 import {UnspentOutputInfo} from '../types/custom-types';
-export class UnspentOutput extends anuma-core.Transaction.UnspentOutput {
+export class UnspentOutput extends anumacore.Transaction.UnspentOutput {
 	blockDaaScore: number;
 	scriptPublicKeyVersion: number;
 	id:string;
@@ -14,8 +14,8 @@ export class UnspentOutput extends anuma-core.Transaction.UnspentOutput {
 		this.scriptPublicKeyVersion = o.scriptPublicKeyVersion;
 		this.id = this.txId + this.outputIndex;
 		this.signatureOPCount = this.script.getSignatureOperationsCount();
-		this.mass = this.signatureOPCount * anuma-core.Transaction.MassPerSigOp;
-		this.mass+= 151 * anuma-core.Transaction.MassPerTxByte; //standalone mass 
+		this.mass = this.signatureOPCount * anumacore.Transaction.MassPerSigOp;
+		this.mass+= 151 * anumacore.Transaction.MassPerTxByte; //standalone mass 
 		this.isCoinbase = o.isCoinbase,
 		this.scriptPubKey = o.scriptPubKey
 	}
