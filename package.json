@@ -45,5 +45,6 @@
   "bugs": {
     "url": "https://github.com/AnumaNetwork/anuma-wallet/issues"
   },
-  "homepage": "https://github.com/AnumaNetwork/anuma-wallet#readme"
+  "homepage": "https://github.com/AnumaNetwork/anuma-wallet#readme",
+  "types": "./dist/index.d.ts"
 }
