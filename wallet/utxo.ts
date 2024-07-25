@@ -1,7 +1,7 @@
 import {Api,RPC} from 'custom-types';
 import {UnspentOutput} from './unspent-output';
 // @ts-ignore
-import * as anuma-core from '@anuma-network/core-lib';
+import * as anumacore from '@anuma-network/core-lib';
 import * as crypto from 'crypto';
 import * as helper from '../utils/helper';
 // import * as api from './apiHelpers';
