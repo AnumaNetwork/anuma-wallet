@@ -1,5 +1,5 @@
 // @ts-ignore
-import * as anumacore from '@anuma-network/core-lib';
+import * as anumacore from '@anuma-network/anumacore-lib';
 import {Network} from 'custom-types';
 
 // @ts-ignore

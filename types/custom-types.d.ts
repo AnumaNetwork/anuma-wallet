@@ -1,4 +1,4 @@
-import anumacore from '@anuma-network/core-lib';
+import anumacore from '@anuma-network/anumacore-lib';
 import { AnumaAPI } from 'wallet/apiHelpers';
 
 export type Network = 'anuma' | 'anumadev' | 'anumareg' | 'anumatest' | 'anumasim';

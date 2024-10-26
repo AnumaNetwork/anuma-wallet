@@ -1,5 +1,5 @@
 const Mnemonic = require('bitcore-mnemonic');
-import * as anumacore from '@anuma-network/core-lib';
+import * as anumacore from '@anuma-network/anumacore-lib';
 import * as helper from '../utils/helper';
 import {Storage, StorageType} from './storage';
 export * from './storage';

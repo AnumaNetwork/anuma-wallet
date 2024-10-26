@@ -1,4 +1,4 @@
-import * as anumacore from '@anuma-network/core-lib';
+import * as anumacore from '@anuma-network/anumacore-lib';
 import {UnspentOutputInfo} from '../types/custom-types';
 export class UnspentOutput extends anumacore.Transaction.UnspentOutput {
 	blockDaaScore: number;
